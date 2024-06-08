@@ -78,9 +78,9 @@ public class Main {
 
         ArrayList<String> combos = new ArrayList<>();
         for (int i = 0; i < numberOfCombos; i++) {
-            for (int j = 0; j < dishes.size(); j++) {
-                index = rand.nextInt(dishes.get(j).size());
-                combos.add(dishes.get(j).get(index));
+            for (ArrayList<String> dish : dishes) {
+                index = rand.nextInt(dish.size());
+                combos.add(dish.get(index));
             }
             System.out.println("Комбо " + (i + 1));
             System.out.println(combos);

@@ -28,17 +28,11 @@ public class DinnerConstructor {
     }
 
     public boolean checkDish(String dishType, String dishName) {
-        if (mapOfDishes.get(dishType).contains(dishName)) {
-            return true;
-        }
-        return false;
+        return mapOfDishes.get(dishType).contains(dishName);
     }
 
     public boolean checkType(String dishType) {
-        if (mapOfDishes.containsKey(dishType)) {
-            return true;
-        }
-        return false;
+        return mapOfDishes.containsKey(dishType);
     }
 
 }
