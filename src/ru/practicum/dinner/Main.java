@@ -48,7 +48,7 @@ public class Main {
     }
 
     private static void generateDishCombo() {
-        if (dc.menu.isEmpty()) {
+        if (dc.mapOfDishes.isEmpty()) {
             System.out.println("Список пуст.");
             return;
         }
@@ -62,20 +62,30 @@ public class Main {
         String nextItem = scanner.nextLine();
         Random rand = new Random();
 
-        ArrayList<ArrayList<String>> comboDishList = new ArrayList<>();
         int index;
-        int comboCounter = 0;
-        ArrayList<String> comboDish;
 
+        ArrayList<ArrayList<String>> dishes = new ArrayList<>();
 
         //реализуйте ввод типов блюд
         while (!nextItem.isEmpty()) {
-            index = rand.nextInt(dc.menu.get(nextItem).size());
-            if (dc.menu.containsKey(nextItem)) {
-                comboDish = dc.menu.get(nextItem);
+            if (!dc.mapOfDishes.containsKey(nextItem)) {
+                System.out.println("Такого типа не существет: " + nextItem);
+                return;
             }
+            dishes.add(dc.mapOfDishes.get(nextItem));
+            nextItem = scanner.nextLine();
+        }
+
+        ArrayList<String> combos = new ArrayList<>();
+        for (int i = 0; i < numberOfCombos; i++) {
+            for (int j = 0; j < dishes.size(); j++) {
+                index = rand.nextInt(dishes.get(j).size());
+                combos.add(dishes.get(j).get(index));
+            }
+            System.out.println("Комбо " + (i + 1));
+            System.out.println(combos);
+            combos.clear();
         }
         // сгенерируйте комбинации блюд и выведите на экран
-
     }
 }
