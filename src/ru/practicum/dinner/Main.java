@@ -1,6 +1,7 @@
 package ru.practicum.dinner;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -66,15 +67,18 @@ public class Main {
 
         ArrayList<ArrayList<String>> dishes = new ArrayList<>();
 
+
         //реализуйте ввод типов блюд
         while (!nextItem.isEmpty()) {
             if (!dc.mapOfDishes.containsKey(nextItem)) {
                 System.out.println("Такого типа не существет: " + nextItem);
+                System.out.println("Введите другой тип.");
                 return;
             }
             dishes.add(dc.mapOfDishes.get(nextItem));
             nextItem = scanner.nextLine();
         }
+        HashMap<String, ArrayList<String>> mapOfCombos = new HashMap<>();
 
         ArrayList<String> combos = new ArrayList<>();
         for (int i = 0; i < numberOfCombos; i++) {
@@ -82,9 +86,11 @@ public class Main {
                 index = rand.nextInt(dish.size());
                 combos.add(dish.get(index));
             }
-            System.out.println("Комбо " + (i + 1));
+            String keyCombo = "Комбо " + (i + 1);
+            System.out.println(keyCombo);
             System.out.println(combos);
-            combos.clear();
+            mapOfCombos.put(keyCombo, combos);
+            combos = new ArrayList<>();
         }
         // сгенерируйте комбинации блюд и выведите на экран
     }
